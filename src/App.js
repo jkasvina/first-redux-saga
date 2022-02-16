@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {Wrapper, CashOut, FlexContainer, UsersBox, UsersText} from "./AppStyles";
+import {useDispatch, useSelector} from "react-redux";
+import {incrementActionCreator, decrementActionCreator} from "./store/countReducer";
+// npm i react-redux
 
+// изучить styled-components
+// default function в js - изучить
 function App() {
+  const count = useSelector((state) => state.countReducer.count);
+  const users = useSelector((state) => state.userReducer.users);
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <CashOut >
+        <div style={{ fontSize: '3rem' }}>Баланс: {count}</div>
+        <FlexContainer>
+          <button onClick={() => dispatch(incrementActionCreator())}>Пополнить счёт</button>
+          <button onClick={() => dispatch(decrementActionCreator())}>Снять со счёта</button>
+          <button>Получить юзеров</button>
+        </FlexContainer>
+      </CashOut>
+      <UsersBox>
+        {users.map((user) => (
+            <UsersText key={user.id}>
+              {user.name}
+            </UsersText>
+        ))}
+      </UsersBox>
+    </Wrapper>
   );
 }
 
