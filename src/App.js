@@ -1,32 +1,49 @@
 import React from "react";
-import {Wrapper, CashOut, FlexContainer, UsersBox, UsersText} from "./AppStyles";
-import {useDispatch, useSelector} from "react-redux";
-import {incrementActionCreator, decrementActionCreator} from "./store/countReducer";
+import {
+  Wrapper,
+  CashOut,
+  FlexContainer,
+  UsersBox,
+  UsersText,
+} from "./AppStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncIncrementActionCreator, asyncDecrementActionCreator } from "./store/countReducer";
+import { fetchUsersCustomerAction } from "./store/userReducer";
 // npm i react-redux
+
+// Отформатировать все файлы
+// npx prettier --write .
 
 // изучить styled-components
 // default function в js - изучить
+// repeat learn promises
+// fetch()
+// Saga Middleware, applyMiddleware in store/index.js
 function App() {
+  const dispatch = useDispatch();
   const count = useSelector((state) => state.countReducer.count);
   const users = useSelector((state) => state.userReducer.users);
-  const dispatch = useDispatch();
 
   return (
     <Wrapper>
-      <CashOut >
-        <div style={{ fontSize: '3rem' }}>Баланс: {count}</div>
+      <CashOut>
+        <div style={{ fontSize: "3rem" }}>Баланс: {count}</div>
         <FlexContainer>
-          <button onClick={() => dispatch(incrementActionCreator())}>Пополнить счёт</button>
-          <button onClick={() => dispatch(decrementActionCreator())}>Снять со счёта</button>
-          <button>Получить юзеров</button>
+          <button onClick={() => dispatch(asyncIncrementActionCreator())}> ИНКРЕМЕНТ++ </button>
+          <button onClick={() => dispatch(asyncDecrementActionCreator())}> ДЕКРЕМЕНТ-- </button>
         </FlexContainer>
       </CashOut>
       <UsersBox>
-        {users.map((user) => (
+        <button onClick={() => dispatch(fetchUsersCustomerAction())}> Получить юзеров </button>
+        <div>
+        {users.map( (user) => (
             <UsersText key={user.id}>
               {user.name}
             </UsersText>
-        ))}
+            )
+        )}
+          {/*<div style={{ fontSize: "3rem" }}>{users[0].id}</div>*/}
+        </div>
       </UsersBox>
     </Wrapper>
   );
