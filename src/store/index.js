@@ -10,11 +10,11 @@ import userReducer from "./userReducer";
 // npm i redux-thunk - библиотека для работы с асинхронным кодом
 // саша сказал, пока не нужно
 
-import createSagaMiddleware from 'redux-saga';
-import {rootWatcher} from "../saga";
-import { composeWithDevTools} from "redux-devtools-extension";
+import createSagaMiddleware from "redux-saga";
+import { rootWatcher } from "../saga";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 // корневой редьюсер - объект, содержащий все редьюсеры
 const rootReducer = combineReducers({
@@ -23,12 +23,15 @@ const rootReducer = combineReducers({
   // customers: customerReducer
 
   countReducer,
-  userReducer,
+  userReducer
 });
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+export const store = createStore(
+  rootReducer,
+  applyMiddleware(sagaMiddleware)
+);
 
 // создаём Middleware, запускаем его, передаём в него watcher
 // Watcher следит за конкретным action,
 // а action вызываем при нажатии на кнопку
-sagaMiddleware.run(rootWatcher)
+sagaMiddleware.run(rootWatcher);

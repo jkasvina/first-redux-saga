@@ -18,17 +18,17 @@
 на которой было приостановлено выполнение  на аргумент переданный в next().*/
 
 function* generatorFunction() {
-    for (let i = 0; i < 5; i++){
-        yield i;
-        // ключевое слово yield, похоже на await и return в одном
-    }
+  for (let i = 0; i < 5; i++) {
+    yield i;
+    // ключевое слово yield, похоже на await и return в одном
+  }
 }
 
 const iter = generatorFunction();
 
-console.log(iter.next()) // { value: 0, done: false }
-console.log(iter.next()) // { value: 1, done: false }
-console.log(iter.next()) // { value: 2, done: false }
-console.log(iter.next()) // { value: 3, done: false }
-console.log(iter.next()) // { value: 4, done: false }
-console.log(iter.next()) // { value: undefined, done: true }
+console.log(iter.next()); // { value: 0, done: false }
+console.log(iter.next()); // { value: 1, done: false }
+console.log(iter.next()); // { value: 2, done: false }
+console.log(iter.next()); // { value: 3, done: false }
+console.log(iter.next()); // { value: 4, done: false }
+console.log(iter.next()); // { value: undefined, done: true }

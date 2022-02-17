@@ -27,4 +27,4 @@ export const setUsersCustomerAction = (payload) => ({
   payload,
 });
 
-export const fetchUsersCustomerAction = () => ({type: FETCH_USERS});
+export const fetchUsersCustomerAction = () => ({ type: FETCH_USERS });

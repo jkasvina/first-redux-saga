@@ -7,12 +7,18 @@ import {
   UsersText,
 } from "./AppStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncIncrementActionCreator, asyncDecrementActionCreator } from "./store/countReducer";
+import {
+  asyncIncrementActionCreator,
+  asyncDecrementActionCreator,
+} from "./store/countReducer";
 import { fetchUsersCustomerAction } from "./store/userReducer";
 // npm i react-redux
 
 // Отформатировать все файлы
 // npx prettier --write .
+
+// Отладка, reactdevtools расширение chrome
+// https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi/related?hl=en
 
 // изучить styled-components
 // default function в js - изучить
@@ -29,19 +35,22 @@ function App() {
       <CashOut>
         <div style={{ fontSize: "3rem" }}>Баланс: {count}</div>
         <FlexContainer>
-          <button onClick={() => dispatch(asyncIncrementActionCreator())}> ИНКРЕМЕНТ++ </button>
-          <button onClick={() => dispatch(asyncDecrementActionCreator())}> ДЕКРЕМЕНТ-- </button>
+          <button onClick={() => dispatch(asyncIncrementActionCreator())}>
+            ИНКРЕМЕНТ++
+          </button>
+          <button onClick={() => dispatch(asyncDecrementActionCreator())}>
+            ДЕКРЕМЕНТ--
+          </button>
         </FlexContainer>
       </CashOut>
       <UsersBox>
-        <button onClick={() => dispatch(fetchUsersCustomerAction())}> Получить юзеров </button>
+        <button onClick={() => dispatch(fetchUsersCustomerAction())}>
+          Получить юзеров
+        </button>
         <div>
-        {users.map( (user) => (
-            <UsersText key={user.id}>
-              {user.name}
-            </UsersText>
-            )
-        )}
+          {users.map((user) =>
+            <UsersText key={user.id}>{user.username}</UsersText>
+          )}
           {/*<div style={{ fontSize: "3rem" }}>{users[0].id}</div>*/}
         </div>
       </UsersBox>
