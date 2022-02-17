@@ -25,6 +25,8 @@ import { fetchUsersCustomerAction } from "./store/userReducer";
 // repeat learn promises
 // fetch()
 // Saga Middleware, applyMiddleware in store/index.js
+// redux compose
+// applyMiddleware
 function App() {
   const dispatch = useDispatch();
   const count = useSelector((state) => state.countReducer.count);

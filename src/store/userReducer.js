@@ -8,8 +8,13 @@ export const FETCH_USERS = "FETCH_USERS";
 export default function userReducer(state = defaultState, action) {
   switch (action.type) {
     case SET_USERS:
-      // console.log(action.payload[0].id)
-      return { ...state, users: [...state.users, action.payload] };
+
+      return { ...state, users: action.payload };
+
+      // ошибка, потому что я добавляю массив в другой массив
+      // проверка console.log({ ...state, users: [...state.users, action.payload] })
+      // return { ...state, users: [...state.users, action.payload] };
+
     // изначально состояние является неизменяемым,
     // поэтому новое состояние - всегда новый объект
     default:

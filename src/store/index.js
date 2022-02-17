@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import {createStore, combineReducers, applyMiddleware, compose} from "redux";
 // npm i redux
 import countReducer from "./countReducer";
 import userReducer from "./userReducer";
@@ -26,9 +26,13 @@ const rootReducer = combineReducers({
   userReducer
 });
 
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// composeEnhancerscompose то же самое, что и WithDevTools
+// composeEnhancerscompose(applyMiddleware(sagaMiddleware))
+
 export const store = createStore(
   rootReducer,
-  applyMiddleware(sagaMiddleware)
+    composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
 // создаём Middleware, запускаем его, передаём в него watcher

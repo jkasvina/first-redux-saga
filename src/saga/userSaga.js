@@ -8,13 +8,19 @@ const fetchUsersFromApi = () =>
 
 // Worker (понятие redux-saga), на основе ф-ии генератора
 function* fetchUserWorker() {
-  // call возвращает данные из promise
-  // fetchUsersFromApi обязана возвращать Promise
-  const data = yield call(fetchUsersFromApi);
-  // resolve(data.json()) - преобразование исходных данных к формату json
-  const json = yield call(() => new Promise((resolve) => resolve(data.json())));
-  // console.log(json[0].id);
-  yield put(setUsersCustomerAction(json));
+  try {
+    // call возвращает данные из promise
+    // fetchUsersFromApi обязана возвращать Promise
+    const data = yield call(fetchUsersFromApi);
+    // resolve(data.json()) - преобразование исходных данных к формату json
+    const json = yield call(
+      () => new Promise((resolve) => resolve(data.json()))
+    );
+    // console.log(json[0].id);
+    yield put(setUsersCustomerAction(json));
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 // Watcher отрабатывает тогда, когда action с таким типом будет задиспатчен

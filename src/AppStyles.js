@@ -19,6 +19,5 @@ export const UsersBox = styled(FlexContainer)`
 `;
 
 export const UsersText = styled.h3`
-  color: black;
-  justify-content: center;
+    margin: auto;
 `;
