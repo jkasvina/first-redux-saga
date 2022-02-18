@@ -30,6 +30,14 @@ const rootReducer = combineReducers({
 // composeEnhancerscompose то же самое, что и WithDevTools
 // composeEnhancerscompose(applyMiddleware(sagaMiddleware))
 
+// У тебя есть мидлвара и девтулз 2 энхенсера - Нужно их объеденить
+// compose нужен для этого
+
+// Enhancer - компонент высшего порядка , абстракция вокруг обычного Store,
+// делающая его более мощным
+// как middleware — это не что иное, как плагин или деталь приложения,
+// которую можно поместить «внутрь» цепочки потока данных Redux.
+
 export const store = createStore(
   rootReducer,
     composeWithDevTools(applyMiddleware(sagaMiddleware))

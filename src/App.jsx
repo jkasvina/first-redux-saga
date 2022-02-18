@@ -53,7 +53,6 @@ function App() {
           {users.map((user) =>
             <UsersText key={user.id}>{user.username}</UsersText>
           )}
-          {/*<div style={{ fontSize: "3rem" }}>{users[0].id}</div>*/}
         </div>
       </UsersBox>
     </Wrapper>
